@@ -2,10 +2,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import inicio from "../images/1.jpg";
+import siguiente from "../images/SIGUIENTE.png";
 
 function Inicio() {
   const [inputValue, setInputValue] = useState('');
-  const [clicked, setClicked] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -15,8 +15,9 @@ function Inicio() {
   const handleClick = () => {
     if (inputValue.trim()) {
       navigate('/preguntas');
+    } else {
+      alert('Escribe tu nombre');
     }
-    setClicked(true);
   };
 
   return (
@@ -26,9 +27,14 @@ function Inicio() {
         type="text"
         value={inputValue}
         onChange={handleChange}
-        onClick={handleClick}
         className="absolute h-36 z-10 bottom-60 text-6xl bg-transparent w-[75%] border-0 shadow-none outline-none focus:outline-none text-[#00427F] text-center"
         placeholder="Tu nombre..."
+      />
+      <img
+        src={siguiente}
+        alt="Siguiente"
+        className="absolute left-[20%] h-36 z-10 bottom-16 cursor-pointer"
+        onClick={handleClick}
       />
     </div>
   );
