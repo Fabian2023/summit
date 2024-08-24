@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from "react";
 import inicio from "../images/1.jpg";
 import siguiente from "../images/SIGUIENTE.png";
 import vista2 from "../images/2.jpg";
 import pregunta1 from "../images/3.jpg";
 import pregunta2 from "../images/4.jpg";
 import pregunta3 from "../images/5.jpg";
+import { connect, destroy, sendInput } from "../../lib/utils";
+
+// eslint-disable-next-line no-unused-vars
+const RTCPeerConnection = (
+  window.RTCPeerConnection ||
+  window.webkitRTCPeerConnection ||
+  window.mozRTCPeerConnection
+).bind(window);
 
 function InicioYPreguntas() {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [showQuestions, setShowQuestions] = useState(false); // Estado para controlar la vista
   const [currentImage, setCurrentImage] = useState(vista2); // Imagen inicial de preguntas
+
+  const [isStream, setIsStream] = useState(false);
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
@@ -17,18 +27,50 @@ function InicioYPreguntas() {
 
   const handleClick = () => {
     if (inputValue.trim()) {
+      sendInput(inputValue);
       setShowQuestions(true); // Muestra las preguntas al hacer clic en "Siguiente"
+      setInputValue("");
     } else {
-      alert('Escribe tu nombre');
+      alert("Escribe tu nombre");
     }
   };
 
-  const handleQuestionClick = (image) => {
-    setCurrentImage(image); // Cambia la imagen según la pregunta seleccionada
+  const handleQuestionClick = async (image) => {
+    setCurrentImage(image);
+    if (isStream) await destroy();
+    setIsStream(false);
+
+    setTimeout(() => {
+      endExp();
+    }, 5000);
   };
+
+  function endExp() {
+    setShowQuestions(false);
+    setCurrentImage(vista2);
+  }
+
+  useEffect(() => {
+    const performConnection = async () => {
+      await connect(); // Espera a que connect termine
+      setIsStream(true);
+    };
+    performConnection();
+  }, [showQuestions]);
 
   return (
     <div className="relative flex justify-center items-center h-screen">
+      <div>
+        <video
+          id="talk-video"
+          width={650}
+          height={650}
+          autoPlay
+          playsInline
+          className="absolute top-[27%] left-[24%] z-50 rounded-full"
+        ></video>
+      </div>
+
       {!showQuestions ? (
         // Vista inicial para ingresar el nombre
         <>
@@ -50,7 +92,16 @@ function InicioYPreguntas() {
       ) : (
         // Vista de preguntas
         <>
-          <img src={currentImage} alt="Pregunta" className="max-w-full h-auto" />
+          <img
+            src="/salome.jpg"
+            alt=""
+            className="absolute w-[650px] h-[650px] top-[27%] left-[24%] z-40 rounded-full"
+          />
+          <img
+            src={currentImage}
+            alt="Pregunta"
+            className="max-w-full h-auto"
+          />
           <div
             className="absolute z-10 top-[69%] left-1/2 transform -translate-x-1/2 w-[80%] h-[6%] cursor-pointer"
             onClick={() => handleQuestionClick(pregunta1)}
