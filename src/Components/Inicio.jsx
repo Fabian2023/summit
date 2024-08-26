@@ -6,6 +6,7 @@ import pregunta1 from "../images/3.jpg";
 import pregunta2 from "../images/4.jpg";
 import pregunta3 from "../images/5.jpg";
 import { connect, destroy, sendInput } from "../../lib/utils";
+import { register } from "../../lib/firebase";
 
 // eslint-disable-next-line no-unused-vars
 const RTCPeerConnection = (
@@ -19,6 +20,8 @@ function InicioYPreguntas() {
   const [showQuestions, setShowQuestions] = useState(false); // Estado para controlar la vista
   const [currentImage, setCurrentImage] = useState(vista2); // Imagen inicial de preguntas
 
+  const [isSelected, setIsSelected] = useState(false);
+
   const [isStream, setIsStream] = useState(false);
 
   const handleChange = (e) => {
@@ -29,6 +32,7 @@ function InicioYPreguntas() {
     if (inputValue.trim()) {
       sendInput(inputValue);
       setShowQuestions(true); // Muestra las preguntas al hacer clic en "Siguiente"
+      register(inputValue, 1);
       setInputValue("");
     } else {
       alert("Escribe tu nombre");
@@ -36,18 +40,17 @@ function InicioYPreguntas() {
   };
 
   const handleQuestionClick = async (image) => {
+    if (isSelected) return;
+    setIsSelected(true);
     setCurrentImage(image);
     if (isStream) await destroy();
     setIsStream(false);
-
-    setTimeout(() => {
-      endExp();
-    }, 5000);
   };
 
   function endExp() {
-    setShowQuestions(false);
     setCurrentImage(vista2);
+    setShowQuestions(false);
+    setIsSelected(false);
   }
 
   useEffect(() => {
@@ -67,10 +70,36 @@ function InicioYPreguntas() {
           height={650}
           autoPlay
           playsInline
-          className="absolute top-[27%] left-[24%] z-50 rounded-full"
+          className="absolute top-[28%] left-[24%] z-50 rounded-full"
         ></video>
       </div>
-
+      {currentImage === pregunta1 && (
+        <video
+          className="absolute w-[650px] h-[650px] top-[28%] left-[24%] z-50 rounded-full"
+          autoPlay
+          onEnded={endExp}
+        >
+          <source src="/1_male.mp4" />
+        </video>
+      )}
+      {currentImage === pregunta2 && (
+        <video
+          className="absolute w-[650px] h-[650px] top-[28%] left-[24%] z-50 rounded-full"
+          onEnded={endExp}
+          autoPlay
+        >
+          <source src="/2_male.mp4" />
+        </video>
+      )}
+      {currentImage === pregunta3 && (
+        <video
+          className="absolute w-[650px] h-[670px] top-[28%] left-[24%] z-50 rounded-full"
+          autoPlay
+          onEnded={endExp}
+        >
+          <source src="/3_male.mp4" />
+        </video>
+      )}
       {!showQuestions ? (
         // Vista inicial para ingresar el nombre
         <>
@@ -93,9 +122,14 @@ function InicioYPreguntas() {
         // Vista de preguntas
         <>
           <img
-            src="/salome.jpg"
+            src="/circulo.png"
+            alt="circle"
+            className="absolute w-[650px] h-[655px] top-[27.8%] left-[24%] z-50"
+          />
+          <img
+            src="/alonso.jpg"
             alt=""
-            className="absolute w-[650px] h-[650px] top-[27%] left-[24%] z-40 rounded-full"
+            className="absolute w-[650px] h-[650px] top-[28%] left-[24%] z-40 rounded-full"
           />
           <img
             src={currentImage}
