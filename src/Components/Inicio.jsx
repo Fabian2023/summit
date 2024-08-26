@@ -93,7 +93,7 @@ function InicioYPreguntas() {
       )}
       {currentImage === pregunta3 && (
         <video
-          className="absolute w-[650px] h-[670px] top-[28%] left-[24%] z-50 rounded-full"
+          className="absolute w-[650px] h-[650px] top-[28%] left-[24%] z-50 rounded-full"
           autoPlay
           onEnded={endExp}
         >
