@@ -21,6 +21,7 @@ function InicioYPreguntas() {
   const [currentImage, setCurrentImage] = useState(vista2); // Imagen inicial de preguntas
 
   const [isSelected, setIsSelected] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [isStream, setIsStream] = useState(false);
 
@@ -31,9 +32,15 @@ function InicioYPreguntas() {
   const handleClick = () => {
     if (inputValue.trim()) {
       sendInput(inputValue);
-      setShowQuestions(true); // Muestra las preguntas al hacer clic en "Siguiente"
       register(inputValue, 1);
-      setInputValue("");
+
+      setIsLoading(true);
+
+      setTimeout(() => {
+        setIsLoading(false);
+        setShowQuestions(true); // Muestra las preguntas al hacer clic en "Siguiente"
+        setInputValue("");
+      }, 2500);
     } else {
       alert("Escribe tu nombre");
     }
@@ -117,6 +124,15 @@ function InicioYPreguntas() {
             className="absolute left-[20%] h-36 z-10 bottom-16 cursor-pointer"
             onClick={handleClick}
           />
+          {isLoading && (
+            <div className="absolute z-50 h-screen w-screen flex justify-center items-center bg-black/50">
+              <img
+                src="https://samherbert.net/svg-loaders/svg-loaders/oval.svg"
+                alt="loader"
+                className="w-[150px]"
+              />
+            </div>
+          )}
         </>
       ) : (
         // Vista de preguntas
