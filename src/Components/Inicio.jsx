@@ -73,11 +73,9 @@ function InicioYPreguntas() {
       <div>
         <video
           id="talk-video"
-          width={650}
-          height={650}
           autoPlay
           playsInline
-          className="absolute top-[28%] left-[24%] z-50 rounded-full"
+          className="absolute w-[650px] h-[650px] top-[28%] left-[24%] z-50 rounded-full"
         ></video>
       </div>
       {currentImage === pregunta1 && (
