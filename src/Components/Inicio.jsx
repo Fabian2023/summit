@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import inicio from "../Images/page-0001.jpg";
-import vista2 from "../Images/page-0002.jpg";
-import vista3 from "../Images/page-0003.jpg";
+import inicio from "../images/page-0001.jpg";
+import vista2 from "../images/page-0002.jpg";
+import vista3 from "../images/page-0003.jpg";
 
 const Inicio = () => {
   const [imagenActual, setImagenActual] = useState(inicio);
