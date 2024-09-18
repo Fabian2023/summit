@@ -28,8 +28,8 @@ function InicioYPreguntas() {
   const [phone, setPhone] = useState("");
 
   const [inputValue, setInputValue] = useState("");
-  const [showQuestions, setShowQuestions] = useState(false); // Estado para controlar la vista
-  const [currentImage, setCurrentImage] = useState(vista2); // Imagen inicial de preguntas
+  const [showQuestions, setShowQuestions] = useState(false); 
+  const [currentImage, setCurrentImage] = useState(vista2); 
 
   const [isSelected, setIsSelected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,18 +56,24 @@ function InicioYPreguntas() {
 
   const handlerclickThanks = () => {
     navigate("/thnks");
+    
   };
 
   const gotoagend= () => {
+    
     navigate("/agend");
+    
+    
   };
 
   const goToQr = () => {
     navigate('/qr');
+    
   };
 
   const goToQrcam = () => {
     navigate('/qrcam');
+    
   };
 
   const handleClick = () => {

@@ -28,7 +28,9 @@ const Inicio = () => {
 
   const handleClick = () => {
     navigate('/register');
+    window.location.reload(); // Fuerza la recarga de la página
   };
+  
 
   return (
     <div className="relative">
