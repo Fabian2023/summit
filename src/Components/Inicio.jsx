@@ -6,19 +6,19 @@ import vista3 from "../images/page-0003.jpg";
 
 const Inicio = () => {
   const [imagenActual, setImagenActual] = useState(inicio);
-  const [showButton, setShowButton] = useState(false); // Para controlar la visibilidad del botón
+  const [showButton, setShowButton] = useState(false); 
 
   const navigate = useNavigate(); 
 
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setImagenActual(vista2);
-    }, 3000); // Cambia a vista2 después de 3000 ms (3 segundos)
+    }, 3000); 
 
     const timer2 = setTimeout(() => {
       setImagenActual(vista3);
-      setShowButton(true); // Muestra el botón cuando la imagen actual es vista3
-    }, 6000); // Cambia a vista3 después de 6000 ms (3 segundos después de vista2)
+      setShowButton(true); 
+    }, 6000); 
 
     return () => {
       clearTimeout(timer1);
@@ -27,7 +27,7 @@ const Inicio = () => {
   }, []);
 
   const handleClick = () => {
-    navigate('/register'); // Redirige a la ruta /registrate
+    navigate('/register');
   };
 
   return (
