@@ -30,14 +30,13 @@ const Inicio = () => {
     navigate('/register');
     window.location.reload(); // Fuerza la recarga de la página
   };
-  
 
   return (
-    <div className="relative">
-      
+    <div className="relative w-screen h-screen" style={{ backgroundColor: '#4E0286' }}>
+      {/* Imagen que cambia */}
       <img src={imagenActual} alt="Descripción de la imagen" className="w-full h-auto" />
 
-   
+      {/* Botón que aparece después de un tiempo */}
       <button
         className={`absolute top-[70%] left-1/2 transform -translate-x-1/2 bg-[#FF204C] text-white h-24 w-[45%] py-2 px-4 rounded-3xl font-bold text-6xl transition-opacity duration-1000 ${showButton ? 'opacity-100' : 'opacity-0'}`}
         onClick={handleClick}
