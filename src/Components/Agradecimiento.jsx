@@ -30,7 +30,7 @@ const Agradecimiento = () => {
       timeout4 = setTimeout(() => {
         navigate("/"); 
         setTimeout(() => {
-          window.location.reload(); // Recarga la página después de la redirección
+          window.location.reload(); 
         }, 100); // Recarga después de un breve retraso para asegurarse de que la navegación ocurra primero
       }, 3000);
     }
