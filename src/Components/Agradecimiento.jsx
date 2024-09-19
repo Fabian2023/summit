@@ -28,7 +28,7 @@ const Agradecimiento = () => {
       }, 3000);
     } else if (currentImage === vista13) {
       timeout4 = setTimeout(() => {
-        navigate("/"); // Redirige a la página principal
+        navigate("/"); 
         setTimeout(() => {
           window.location.reload(); // Recarga la página después de la redirección
         }, 100); // Recarga después de un breve retraso para asegurarse de que la navegación ocurra primero
