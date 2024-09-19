@@ -20,7 +20,9 @@ const Agenda = () => {
   };
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
+    <div className="relative w-screen h-screen overflow-hidden" style={{ backgroundColor: '#4E0286' }}>
+      {/* Fondo púrpura fijo detrás de las imágenes */}
+      
       {currentView === 'vista6' && (
         <img
           src={vista6}
