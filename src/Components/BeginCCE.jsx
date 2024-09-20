@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import vista4 from "../images/page-0004.jpg";
 import vista2 from "../images/page-0005.jpg";
 import vista6 from "../images/page-0006.jpg";
@@ -272,7 +271,7 @@ function InicioYPreguntas() {
               }}
               style={{ objectFit: "cover" }}
             >
-              <source src="/19sep.mp4" type="video/mp4" />
+              <source src="/20sep.mp4" type="video/mp4" />
             </video>
           )}
           {playVideo2 && (
